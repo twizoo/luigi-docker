@@ -10,8 +10,8 @@
                     "memory": 64,
                     "portMappings": [
                         {
-                            "containerPort": 8082,
-                            "hostPort": 8082
+                            "containerPort": 9000,
+                            "hostPort": 9000
                         }
                     ],
                     "essential": true
@@ -32,7 +32,7 @@
             "loadBalancers": [
                 {
                     "containerName": "luigid",
-                    "containerPort": 8082
+                    "containerPort": 9000
                 }
             ]
         }
