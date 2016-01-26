@@ -1,8 +1,10 @@
-FROM quay.io/twizoo/base:latest
+FROM alpine:3.1
 
-RUN pip install luigi sqlalchemy tornado --upgrade
+RUN apk add --update python py-pip
+
+RUN pip install luigi sqlalchemy --upgrade
 
 EXPOSE 8082
 ADD client.cfg /etc/luigi/client.cfg
 
-CMD luigid --logdir /logs/luigi
+CMD ["luigid"]

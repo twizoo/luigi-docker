@@ -1,0 +1,19 @@
+test:
+  override:
+    - echo "NO TESTS"
+
+machine:
+  services:
+    - docker
+
+dependencies:
+  post:
+    - pip install awscli==1.9.17
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - $(aws ecr get-login --region us-east-1)
+      - docker build -t 601537213654.dkr.ecr.us-east-1.amazonaws.com/luigid:latest .
+      - docker push 601537213654.dkr.ecr.us-east-1.amazonaws.com/luigid
