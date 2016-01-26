@@ -1,0 +1,40 @@
+{
+    "dockerImage": "601537213654.dkr.ecr.us-east-1.amazonaws.com/luigid",
+    "tasks": [
+        {
+            "family": "luigid",
+            "containerDefinitions": [
+                {
+                    "name": "luigid",
+                    "image": "601537213654.dkr.ecr.us-east-1.amazonaws.com/luigid:latest",
+                    "memory": 64,
+                    "portMappings": [
+                        {
+                            "containerPort": 8082,
+                            "hostPort": 8082
+                        }
+                    ],
+                    "essential": true
+                }
+            ]
+        }
+    ],
+    "services": [
+        {
+            "visibility": "private",
+            "serviceName": "luigid",
+            "taskName": "luigid",
+            "desiredCount": 1,
+            "deploymentConfiguration": {
+                "maximumPercent": 200,
+                "minimumHealthyPercent": 100
+            },
+            "loadBalancers": [
+                {
+                    "containerName": "luigid",
+                    "containerPort": 8082
+                }
+            ]
+        }
+    ]
+}
